@@ -1,3 +1,10 @@
+# Local Python environment and test cache
+.venv/
+.pytest_cache/
+
+# Local files
+temp/
+
 # Python bytecode
 __pycache__/
 *.py[cod]
@@ -5,6 +12,7 @@ __pycache__/
 # Environment variants; keep a safe template in Git
 .env.*
 !.env.example
+.env
 
 # Test and coverage output
 .coverage
