@@ -303,6 +303,3 @@ Synthetic data will only be used where public data cannot represent the required
 After the manual pipeline is stable, the pipeline may be automated with a scheduler or GitHub Actions.
 
 Airflow will only be considered if it provides a meaningful architectural benefit.
-
-
-
