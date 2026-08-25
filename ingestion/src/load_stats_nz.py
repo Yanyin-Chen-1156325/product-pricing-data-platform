@@ -11,7 +11,7 @@ from validate_data import (
 
 
 def load_stats_nz_data() -> pd.DataFrame:
-    return pd.read_csv(STATS_NZ_SOURCE_FILE)
+    return pd.read_csv(STATS_NZ_SOURCE_FILE, dtype={"Period": "string"})
 
 
 def parse_period(df: pd.DataFrame) -> pd.DataFrame:
