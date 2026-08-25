@@ -1,3 +1,21 @@
-# Local source downloads and working notes
-temp/
-.venv/
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Environment variants; keep a safe template in Git
+.env.*
+!.env.example
+
+# Test and coverage output
+.coverage
+htmlcov/
+
+# Future dbt-generated files
+dbt_packages/
+target/
+logs/
+
+# Private-key authentication files
+*.pem
+*.p8
+*.key
