@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: raw
+    database: PRODUCT_PRICING_DB
+    schema: RAW
+    tables:
+      - name: STATS_NZ_SELECTED_PRICE_INDEXES

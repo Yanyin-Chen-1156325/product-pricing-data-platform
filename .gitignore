@@ -4,6 +4,7 @@
 
 # Local files
 temp/
+data/
 
 # Python bytecode
 __pycache__/
