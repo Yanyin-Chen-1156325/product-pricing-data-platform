@@ -1,0 +1,116 @@
+version: 2
+
+models:
+
+  - name: dim_date
+    description: "Monthly date dimension for time-based analysis."
+
+    columns:
+      - name: date_key
+        description: "Logical primary key for the date dimension."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: date
+        description: "First day of the month."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: year
+        data_tests:
+          - not_null
+
+      - name: month
+        data_tests:
+          - not_null
+
+  - name: dim_product
+    description: "Product dimension for Stats NZ weighted-average product price series."
+
+    columns:
+      - name: product_key
+        description: "Surrogate key for the product price series."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: series_reference
+        description: "Stats NZ source series identifier."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Product name from the Stats NZ source."
+        data_tests:
+          - not_null
+
+  - name: fact_product_price
+    description: "Monthly weighted-average product price observations."
+
+    columns:
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+      - name: product_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_product')
+                field: product_key
+
+      - name: price
+        data_tests:
+          - not_null
+
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['FINAL', 'REVISED']
+
+      - name: units
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Dollars']
+
+  - name: fact_price_index
+    description: "Monthly Stats NZ price index observations."
+
+    columns:
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+      - name: series_reference
+        data_tests:
+          - not_null
+
+      - name: index_value
+        data_tests:
+          - not_null
+
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['FINAL', 'REVISED']
+
+      - name: units
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Index']
